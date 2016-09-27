@@ -1,4 +1,6 @@
 def balance_after_12_minimum_payments(balance, annual_interest_rate, monthly_payment_rate):
+    """returns the remaining balance of a loan after 12 miniumum payments"""
+
     total_paid = 0
     monthly_interest_rate = annual_interest_rate / 12.0
 
