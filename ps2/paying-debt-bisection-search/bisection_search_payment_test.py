@@ -8,14 +8,6 @@ class TestBisectPaymentCalculator(unittest.TestCase):
         self.assertEqual(100.0, calculator.initial_balance)
         self.assertEqual(0.02, calculator.annual_interest_rate)
 
-
-    def test_it_can_return_the_attributes(self):
-        calculator = BisectPaymentCalculator(balance = 100, annual_interest_rate = 0.02)
-        self.assertEqual(
-            {'balance': 100, 'annual_interest_rate': 0.02},
-            calculator.return_attrs()
-        )
-
     def test_it_generates_a_low_guess(self):
         calculator = BisectPaymentCalculator(balance = 600, annual_interest_rate = 0.02)
         result = calculator.initial_low
