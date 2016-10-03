@@ -1,17 +1,8 @@
-# Hangman game
-#
-
-# -----------------------------------
-# Helper code
-# You don't need to understand this helper code,
-# but you will have to know how to use the functions
-# (so be sure to read the docstrings!)
-
 import random
 
 WORDLIST_FILENAME = "words.txt"
 
-def loadWords():
+def load_words():
     """
     Returns a list of valid words. Words are strings of lowercase letters.
     
@@ -28,7 +19,7 @@ def loadWords():
     print("  ", len(wordlist), "words loaded.")
     return wordlist
 
-def chooseWord(wordlist):
+def choose_word(wordlist):
     """
     wordlist (list): list of words (strings)
 
@@ -36,22 +27,31 @@ def chooseWord(wordlist):
     """
     return random.choice(wordlist)
 
-# end of helper code
-# -----------------------------------
+wordlist = load_words()
 
-# Load the list of words into the variable wordlist
-# so that it can be accessed from anywhere in the program
-wordlist = loadWords()
-
-def isWordGuessed(secretWord, lettersGuessed):
+def is_word_guessed(secret_word, letters_guessed):
     '''
-    secretWord: string, the word the user is guessing
-    lettersGuessed: list, what letters have been guessed so far
+    secret_word: string, the word the user is guessing
+    letters_guessed: list, what letters have been guessed so far
     returns: boolean, True if all the letters of secretWord are in lettersGuessed;
       False otherwise
     '''
-    # FILL IN YOUR CODE HERE...
 
+    if len(letters_guessed) < len(secret_word):
+        return False
+    else:
+        letters_remaining = list(secret_word)
+
+        for index in range(0, len(letters_guessed)):
+            if len(letters_remaining) == 0:
+                break
+            elif letters_guessed[index] in secret_word:
+                letters_remaining.pop(0)
+
+        if len(letters_remaining) > 0:
+            return False
+        else:
+            return True
 
 
 def getGuessedWord(secretWord, lettersGuessed):
