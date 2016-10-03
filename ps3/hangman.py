@@ -53,17 +53,23 @@ def is_word_guessed(secret_word, letters_guessed):
         else:
             return True
 
-
-def getGuessedWord(secretWord, lettersGuessed):
+def get_guessed_word(secret_word, letters_guessed):
     '''
     secretWord: string, the word the user is guessing
     lettersGuessed: list, what letters have been guessed so far
     returns: string, comprised of letters and underscores that represents
       what letters in secretWord have been guessed so far.
     '''
-    # FILL IN YOUR CODE HERE...
+    result = ''
 
+    for char in secret_word:
+        if char in letters_guessed:
+            result += char
+        else:
+            result += '_'
+        result += ' '
 
+    return result.strip()
 
 def getAvailableLetters(lettersGuessed):
     '''
@@ -73,7 +79,6 @@ def getAvailableLetters(lettersGuessed):
     '''
     # FILL IN YOUR CODE HERE...
     
-
 def hangman(secretWord):
     '''
     secretWord: string, the secret word to guess.
@@ -95,11 +100,6 @@ def hangman(secretWord):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE...
-
-
-
-
-
 
 # When you've completed your hangman function, uncomment these two lines
 # and run this file to test! (hint: you might want to pick your own

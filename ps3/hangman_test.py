@@ -1,22 +1,22 @@
 import unittest
 
-from hangman import is_word_guessed
+from hangman import is_word_guessed, get_guessed_word
 
-class HangmanTest(unittest.TestCase):
+class IsWordGuessedTest(unittest.TestCase):
     def test_word_not_guessed(self):
-        secret_word = 'apple'
-        letters_guessed = ['e', 'i', 'k', 'p', 'r']
+        secret_word = 'pizza'
+        letters_guessed = ['e', 'a', 'k', 'i', 'r']
         result = is_word_guessed(secret_word, letters_guessed)
         self.assertEqual(False, result)
 
     def test_it_returns_true_if_word_guessed_perfectly(self):
-        secret_word = 'apple'
-        letters_guessed = ['a', 'p', 'p', 'l', 'e']
+        secret_word = 'kale'
+        letters_guessed = ['k', 'a', 'l', 'e']
         result = is_word_guessed(secret_word, letters_guessed)
         self.assertEqual(True, result)
 
     def test_it_returns_false_if_no_letters_gussed_yet(self):
-        secret_word = 'apple'
+        secret_word = 'salad'
         letters_guessed = []
         result = is_word_guessed(secret_word, letters_guessed)
         self.assertEqual(False, result)
@@ -38,6 +38,25 @@ class HangmanTest(unittest.TestCase):
         letters_guessed = ['z', 'x', 'q', 'm', 'a', 'n', 'g', 'o', 's', 't', 'e', 'e', 'n']
         result = is_word_guessed(secret_word, letters_guessed)
         self.assertEqual(True, result)
+
+class GetWordGuessedTest(unittest.TestCase):
+    def test_word_that_has_no_letters_guessed_yet(self):
+        secret_word = 'grape'
+        letters_guessed = []
+        result = get_guessed_word(secret_word, letters_guessed)
+        self.assertEqual('_ _ _ _ _', result)
+
+    def test_word_that_has_one_letter_guessed(self):
+        secret_word = 'banana'
+        letters_guessed = ['a']
+        result = get_guessed_word(secret_word, letters_guessed)
+        self.assertEqual('_ a _ a _ a', result)
+
+    def test_word_that_has_all_letters_guessed(self):
+        secret_word = 'tact'
+        letters_guessed = ['t', 'a', 'c', 't']
+        result = get_guessed_word(secret_word, letters_guessed)
+        self.assertEqual('t a c t', result)
 
 if __name__ == '__main__':
     unittest.main()
