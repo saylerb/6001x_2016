@@ -1,4 +1,5 @@
 import random
+import string
 
 WORDLIST_FILENAME = "words.txt"
 
@@ -71,13 +72,15 @@ def get_guessed_word(secret_word, letters_guessed):
 
     return result.strip()
 
-def getAvailableLetters(lettersGuessed):
+def get_available_letters(letters_guessed):
     '''
     lettersGuessed: list, what letters have been guessed so far
     returns: string, comprised of letters that represents what letters have not
       yet been guessed.
     '''
-    # FILL IN YOUR CODE HERE...
+    alphabet = string.ascii_lowercase
+
+    return ''.join(sorted(list(set(alphabet).difference(letters_guessed))))
     
 def hangman(secretWord):
     '''
