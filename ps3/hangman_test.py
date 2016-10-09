@@ -39,6 +39,18 @@ class IsWordGuessedTest(unittest.TestCase):
         result = is_word_guessed(secret_word, letters_guessed)
         self.assertEqual(True, result)
 
+    def test_word_with_repeated_letters_is_guessed(self):
+        secret_word = 'pizza'
+        letters_guessed = ['p', 'i', 'z', 'a']
+        result = is_word_guessed(secret_word, letters_guessed)
+        self.assertEqual(True, result)
+
+    def test_word_with_every_guess_the_same_letter(self):
+        secret_word = "beatitude"
+        letters_guessed = ['b', 'b', 'b', 'b', 'b', 'b', 'b']
+        result = is_word_guessed(secret_word, letters_guessed)
+        self.assertEqual(False, result)
+
 class GetWordGuessedTest(unittest.TestCase):
     def test_word_that_has_no_letters_guessed_yet(self):
         secret_word = 'grape'
